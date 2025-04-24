@@ -1,9 +1,9 @@
-
 import React, { useState } from 'react';
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { ChevronLeft, ChevronRight, Download, Filter, X } from "lucide-react";
+import { Link } from 'react-router-dom';
 
 interface PurchaseOrder {
   totalCost: number;
@@ -128,7 +128,11 @@ export const PurchaseOrders = () => {
               {mockData.map((order, index) => (
                 <TableRow key={index} className="hover:bg-gray-800">
                   <TableCell className="text-white">${order.totalCost.toFixed(2)}</TableCell>
-                  <TableCell className="text-blue-400">{order.poNumber}</TableCell>
+                  <TableCell>
+                    <Link to={`/po/${order.poNumber}`} className="text-blue-400 hover:text-blue-300">
+                      {order.poNumber}
+                    </Link>
+                  </TableCell>
                   <TableCell className="text-white">{order.department}</TableCell>
                   <TableCell className="text-white">{order.location}</TableCell>
                   <TableCell className="text-white">{order.vendor}</TableCell>
